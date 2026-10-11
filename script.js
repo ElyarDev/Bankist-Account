@@ -181,6 +181,25 @@ btnTransfer.addEventListener('click', function (e) {
   }
 })
 
+// REQUEST LOAN
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov =>
+    mov >= amount / 10)) {
+    // add movement 
+    currentAccount.movements.push(amount);
+
+    // update ui
+    updateUi(currentAccount);
+  }
+
+  // empty input
+  inputLoanAmount.value = '';
+})
+
 // CLOSE ACCOUNT
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
@@ -389,3 +408,28 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // console.log(latestLargeMovementIndex);
 
 // ********************************************************************************************
+
+// console.log(movements);
+// console.log(movements.includes(-130));
+
+// const anyDeposits = movements.some(mov => mov > 0);
+// console.log(anyDeposits);
+
+// console.log(movements.every(mov => mov > 0));
+// console.log(account4.movements.every(mov => mov > 0));
+
+// ********************************************************************************************
+
+// const arr = [[1, 2, 3], [4, 5, 6,], 7, 8];
+// console.log(arr.flat());
+
+// const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+// console.log(arrDeep.flat(2));
+
+// const accountMovements = accounts.map(acc => acc.movements);
+// console.log(accountMovements);
+// const allMovements = accountMovements.flat();
+// console.log(allMovements);
+
+// const overallBalance = allMovements.reduce((acc, mov) => acc + mov, 0);
+// console.log(overallBalance);
